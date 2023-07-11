@@ -1,0 +1,25 @@
+body {
+    font-family: Arial;
+    background-color: #f4f4f4;
+    padding: 30px;
+    color: #333;
+    background-image: url('./images/OdontologySupplies.jpg');
+}
+
+.App {
+    width: 1000px;
+    margin: 0 auto 300px;
+    background-color: #efefef;
+    border-radius: 10px;
+    padding: 20px 30px;
+} 
+
+h1 {
+    text-align: center;
+}
+
+
+
+.supplies-list {
+    border-radius: 25px;
+}

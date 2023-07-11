@@ -1,0 +1,78 @@
+.item{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    display: flex;
+    justify-content: center;
+}
+
+.itemDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 100px;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+
+.itemName {
+    width: 250px;
+    text-align: center;
+}
+
+.itemBrand {
+    width: 150px;
+    text-align: center;
+}
+
+.itemQuant {
+    width: 150px;
+    text-align: center;
+}
+
+.itemOptional {
+    width: 150px;
+    text-align: center;
+}
+
+.itemButtons {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+body {
+    font-family: Verdana;
+    background-color: #949393;
+    padding: 30px;
+}
+
+button {
+    color: #fff;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    opacity: .8;
+    transition: .3s;
+    margin-right: 10px;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+.checkBtn {
+    background-color: #337441;
+    width: 80px;
+    text-align: center;
+}
+
+.removeBtn {
+    background-color: #8b2e2e;
+    width: 100px;
+}
