@@ -8,7 +8,7 @@ function App() {
   const [items, setItems] = useState([
     {
       id: 1,
-      imageURL: 'https://lh3.googleusercontent.com/u/0/d/1x4xKKY3gigN6HxQ0EIt8QkXP5c9rG5nI=w1360-h625-iv1',
+      image: '',
       name: "Espelho Goldran n5",
       brand: "Dental Especial",
       quantity: 1,
@@ -17,7 +17,7 @@ function App() {
     },
     {
       id: 2,
-      imageURL: 'https://lh3.googleusercontent.com/u/0/d/1VBouV-an0Tn1-4-YmePFF_YBsaIfZ94W=w805-h625-iv1',
+      image: '',
       name: "Resina Z100 - 3M",
       brand: "Dental Alto Astral",
       quantity: 4,
@@ -26,7 +26,7 @@ function App() {
     },
     {
       id: 3,
-      imageURL: 'https://cdn.dentalspeed.com/produtos/luva-cirurgica-esteril-6-5-supermax-5760b-1.jpg',
+      image: '',
       name: "Luva Cirúrgica mega legalaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaa aaaaaaaaaaaaa",
       brand: "Dental Fundamental",
       quantity: 1,
@@ -35,20 +35,28 @@ function App() {
     }
   ]);
 
-  const addItem = (imageURL, name, brand, quantity, optional) => {
+  const addItem = (image, name, brand, quantity, optional) => {
     const newItems = [
       ...items, 
       {
         id: Math.floor(Math.random() * 1000000),
-        imageURL,
-        name,
-        brand,
-        quantity,
-        optional,
+        image: image,
+        name: name,
+        brand: brand,
+        quantity: quantity,
+        optional: optional,
         isCompleted: false,
       },
     ];
     setItems(newItems);
+  }
+
+  const removeItem = (id) =>{
+    const newItems = [...items];
+    const filteredItems = newItems.filter(
+      item => item.id !== id ? item : null
+      );
+      setItems(filteredItems);
   }
 
   const checkItem = (id) => {
@@ -59,17 +67,18 @@ function App() {
     setItems(newItems);
   }
 
+
   return (
     <div className="App">
       <h1>Lista de Materais</h1>
-      <ItemForm addItem={addItem}/>
+      <ItemForm addItem={addItem} />
       <Header />
       <div className='supplies-list'>
         {items.map((item) => (
-          <Item key={item.id} item={item} checkItem={checkItem}/>
+          <Item key={item.id} item={item} checkItem={checkItem} removeItem={removeItem}/>
         ))}
       </div>
-      
+
     </div>
   )
 }

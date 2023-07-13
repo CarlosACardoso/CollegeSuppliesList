@@ -3,21 +3,19 @@
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-    border-radius: 25px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: 20px;
 }
 
 .headerDetails {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .headerImage {
     width: 100px;
-    margin-left: 35px;
+    margin-left: 10px;
     text-align: center;
 }
 

@@ -2,24 +2,24 @@ import { useState } from 'react'
 import './ItemForm.css'
 
 const ItemForm = ({ addItem }) => {
-    const [imageURL, setImageURL] = useState("")
+    const [image, setImage] = useState('');
     const [name, setName] = useState("")
     const [brand, setBrand] = useState("")
     const [quantity, setQuantity] = useState("")
     const [optional, setOptional] = useState("")
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(!imageURL || !name || !quantity || !optional) return;
-        addItem(imageURL, name, brand, quantity, optional);
-        setImageURL("");
+        if(!image || !name || !quantity || !optional) return;
+        console.log(image)
+        addItem(image, name, brand, quantity, optional);
+        setImage("");
         setName("");
         setBrand("");
         setQuantity("");
         setOptional("");
     };
+
   return (
         <div>
             <h2>Novo item:</h2>
@@ -27,13 +27,13 @@ const ItemForm = ({ addItem }) => {
                 className="item-form"
                 onSubmit={handleSubmit}
             >
+                <div className="image-input">
+                    <label htmlFor="image">Escolha uma imagem para o item</label>
+                    <input type='file' name='image' 
+                        onChange={(e) => setImage(e.target.files[0])}/>
+                </div>
                 <div className='itemDetailsForm'>
-                    <input 
-                        type='text'
-                        placeholder="Digite a url da imagem" 
-                        value={imageURL}
-                        onChange={(e) => setImageURL(e.target.value)}
-                    />
+                    
                     <input 
                         type="text" 
                         placeholder="Digite o nome do item" 
@@ -50,7 +50,12 @@ const ItemForm = ({ addItem }) => {
                         placeholder="Quantidade" 
                         value={quantity}
                         step="1"
-                        onChange={(e) => setQuantity(e.target.value)}
+                        onChange={(e) =>{
+                            const inputValue = e.target.value;
+                            if (inputValue >= 0) {
+                                setQuantity(inputValue);
+                            }
+                        }}
                     />
                     <select value={optional} 
                         onChange={(e) => setOptional(e.target.value)}>
@@ -59,10 +64,7 @@ const ItemForm = ({ addItem }) => {
                         <option value="Necessario">Necessário</option>
                     </select>
                 </div>
-                <button 
-                    className='itemAddButton'
-                    type="submit"
-                >
+                <button className='itemAddButton' type="submit">
                     Adicionar item
                 </button>
             </form>
