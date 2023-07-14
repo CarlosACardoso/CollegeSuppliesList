@@ -18,6 +18,20 @@ h1 {
     text-align: center;
 }
 
+
+.seed {
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+}
+
+.searchItems {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .supplies-list {
     border-radius: 25px;
 }
+

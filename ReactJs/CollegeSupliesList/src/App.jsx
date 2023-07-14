@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import Item from './components/Item/Item';
-import ItemForm from './components/ItemForm/ItemForm';
-import Header from './components/Header/Header';
+import Item from './components/Item/Item'
+import ItemForm from './components/ItemForm/ItemForm'
+import Header from './components/Header/Header'
+import Filter from './components/Filter/Filter'
+import Search from './components/Search/Search'
+import Seed from './components/Seed/Seed'
 
 function App() {
   const [items, setItems] = useState([
@@ -34,6 +37,19 @@ function App() {
       isCompleted: true,
     }
   ]);
+
+  const [filter, setFilter] = useState("All")
+  const [search, setSearch] = useState("")
+  const [seed, setSeed] = useState("")
+  const [password, setPassword] = useState("")
+
+  const searchList = (seed) => {
+
+  }
+
+  const saveList = (seed, password) => {
+    
+  }
 
   const addItem = (image, name, brand, quantity, optional) => {
     const newItems = [
@@ -71,13 +87,35 @@ function App() {
   return (
     <div className="App">
       <h1>Lista de Materais</h1>
-      <ItemForm addItem={addItem} />
+      <div className='seed'>
+        <Seed 
+          search={seed} setSearch={setSeed} 
+          password={password} setPassword={setPassword}
+          searchList={searchList}
+          saveList={saveList}
+        />
+      </div>
+      <div className='searchItems'>
+        <Search search={search} setSearch={setSearch} />
+        <Filter filter={filter} setFilter={setFilter}/>
+      </div>
       <Header />
       <div className='supplies-list'>
-        {items.map((item) => (
+        {items.filter((items) => 
+            filter === "All" 
+              ? true 
+              : filter === "Completed" 
+              ? items.isCompleted 
+              : !items.isCompleted
+          )
+          .filter((items) => 
+          items.name.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((item) => (
           <Item key={item.id} item={item} checkItem={checkItem} removeItem={removeItem}/>
         ))}
       </div>
+      <ItemForm addItem={addItem} />
 
     </div>
   )

@@ -11,8 +11,7 @@ const Header = () => {
           <p className='headerQuant'>Quantidade</p>
           <p className='headerOptional'>Optional</p>
         </div>
-        <div className='headerSpaceButtons'>
-        </div>
+        <div className='headerSpaceButtons'>Funções</div>
     </div>
   )
 }

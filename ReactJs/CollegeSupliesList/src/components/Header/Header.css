@@ -42,4 +42,5 @@
 .headerSpaceButtons{
     display: flex;
     width: 30px;
+    text-align: right;
 }
