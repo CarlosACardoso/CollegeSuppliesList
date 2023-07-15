@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 const router = express.Router();
 
-let items = [];
+let list = [{ items: [] }];
 const filesPath = path.join(__dirname, 'data');
 
 const saveItems = (items, filesPath) => {
@@ -26,12 +26,17 @@ const saveItems = (items, filesPath) => {
 const readItems = (fileName) => {
   const fullPath = path.join(filesPath, fileName);
   const fileContent = require(fullPath);
-  items = fileContent;
+  list = fileContent;
 };
 
 router.get('/suppliesList', (request, response) => {
-  readItems('ListaSimples.js');
-  response.send(items);
+  const query = request.query
+  if (query.nameList === "" || query.nameList === undefined) {
+    list = []
+  }else{
+    readItems(`${query.nameList}`)
+  }  
+  response.send(list)
 });
 
 app.use(cors());

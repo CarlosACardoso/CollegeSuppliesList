@@ -17,7 +17,7 @@ function App() {
 
   const searchList = async () => {
     try {
-      const response = await fetch('http://localhost:3000/suppliesList');
+      const response = await fetch(`http://localhost:3000/suppliesList?nameList=${seed}`);
       const jsonData = await response.json();
       setItems(jsonData);
     } catch (error) {
@@ -67,7 +67,7 @@ function App() {
       <h1>Lista de Materais</h1>
       <div className='seed'>
         <Seed 
-          search={seed} setSearch={setSeed} 
+          seed={seed} setSeed={setSeed} 
           password={password} setPassword={setPassword}
           searchList={searchList}
           saveList={saveList}
