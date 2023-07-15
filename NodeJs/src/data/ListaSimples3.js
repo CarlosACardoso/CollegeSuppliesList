@@ -9,21 +9,12 @@ module.exports = [
     "isCompleted": false
   },
   {
-    "id": 2,
-    "image": "",
-    "name": "Resina Z100 - 3M",
-    "brand": "Dental Alto Astral",
-    "quantity": 4,
-    "optional": "Necessário",
-    "isCompleted": true
-  },
-  {
     "id": 3,
     "image": "",
     "name": "Luva Cirúrgica",
     "brand": "Dental Fundamental",
     "quantity": 1,
     "optional": "Opcional",
-    "isCompleted": true
+    "isCompleted": false
   }
 ];

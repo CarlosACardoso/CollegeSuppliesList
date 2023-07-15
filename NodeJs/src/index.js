@@ -6,28 +6,71 @@ const app = express();
 const router = express.Router();
 
 let list = [{ items: [] }];
+let password = "";
 const filesPath = path.join(__dirname, 'data');
+  
+const checkFileExists = (fileName) => {
+  const fullPath = path.join(filesPath, fileName);
+  return fs.existsSync(fullPath+'.js');
+};
 
-const saveItems = (items, filesPath) => {
-    const fileName = 'ListaSimples.js';
-    const fileContent = `module.exports = ${JSON.stringify(items, null, 2)};`;
-    const fullPath = path.join(filesPath, fileName);
-  
-    fs.writeFile(fullPath, fileContent, (err) => {
-      if (err) {
-        console.error(`Erro ao salvar arquivo ${fullPath}: ${err}`);
-      } else {
-        console.log(`Arquivo ${fullPath} salvo com sucesso.`);
-      }
-    });
-  };
-  
+const saveItems = (items, fileName, password) => {
+  const fileContent = `module.exports = ${JSON.stringify(items, null, 2)};`;
+  const fullPath = path.join(filesPath, fileName + '.js');
+  const passwordContent = `module.exports = ${JSON.stringify(password, null, 2)};`;
+  const passwordPath = path.join(filesPath, fileName + 'Password.js');
+
+  fs.writeFile(fullPath, fileContent, (err) => {
+    if (err) {
+      console.error(`Erro ao salvar arquivo ${fullPath}: ${err}`);
+    } else {
+      console.log(`Arquivo ${fullPath} salvo com sucesso.`);
+    }
+  });
+
+  fs.writeFile(passwordPath, passwordContent, (err) => {
+    if (err) {
+      console.error(`Erro ao salvar arquivo ${fullPath}: ${err}`);
+    } else {
+      console.log(`Arquivo ${fullPath} salvo com sucesso.`);
+    }
+  });
+};
+
+const checkPassword = (fileName, listPassword) =>{
+  fileName = fileName + 'Password.js'
+  let fullPath = path.join(filesPath, fileName);
+  const fileContent = require(fullPath);
+  password = fileContent;
+  console.log(listPassword)
+  if (password === listPassword){
+    return true;
+  }else{
+    return false;
+  }
+};
 
 const readItems = (fileName) => {
   const fullPath = path.join(filesPath, fileName);
   const fileContent = require(fullPath);
   list = fileContent;
 };
+
+router.post('/saveList', (request, response) => {
+  const body = request.body
+  if (checkFileExists(body.listName)){
+    if(checkPassword(body.listName, body.listPassword)){
+        saveItems(body.listItems, body.listName, body.listPassword)
+        console.log('Salvo com sucesso.')
+    }else{
+      console.log('Senha Incorreta.')
+    }
+  }else{
+    saveItems(body.listItems, body.listName,body.listPassword)
+    console.log('Criado com sucesso.')
+  }
+  
+});
 
 router.get('/suppliesList', (request, response) => {
   const query = request.query
@@ -39,6 +82,7 @@ router.get('/suppliesList', (request, response) => {
   response.send(list)
 });
 
+app.use(express.json());
 app.use(cors());
 app.use(router);
 

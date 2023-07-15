@@ -1,6 +1,1 @@
-module.exports = [
-    {
-      password: 'senhaListaSimples',
-    }
-  ];
-  
+module.exports = "senhaListaSimples";

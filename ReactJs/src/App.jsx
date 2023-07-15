@@ -25,8 +25,20 @@ function App() {
     }
   };
 
-  const saveList = (seed, password) => {
-    
+  const saveList = async () => {
+    const data = {
+      listName: seed,
+      listPassword: password,
+      listItems: items
+    };
+
+    const response = await fetch(`http://localhost:3000/saveList`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json' 
+      },
+      body: JSON.stringify(data)
+    })
   }
 
   const addItem = (image, name, brand, quantity, optional) => {
