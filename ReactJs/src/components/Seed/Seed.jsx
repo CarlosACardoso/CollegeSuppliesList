@@ -1,7 +1,7 @@
 import React from 'react'
 import './Seed.css'
 
-const Seed = ({ seed, setSeed, password, setPassword, searchList, saveList }) => {
+const Seed = ({ seed, setSeed, password, setPassword, searchList, saveList, responseSave }) => {
   return (
     <div className="seed">
         <input className='seedList'
@@ -18,7 +18,7 @@ const Seed = ({ seed, setSeed, password, setPassword, searchList, saveList }) =>
             onChange={(e) => setPassword(e.target.value)}
         />
         <button className='saveBtn' onClick={saveList}>Salvar Lista</button>
-
+        <label className='responseSave'>{responseSave}</label>
         
     </div>
   )

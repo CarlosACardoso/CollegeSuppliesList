@@ -8,8 +8,8 @@ import Search from './components/Search/Search'
 import Seed from './components/Seed/Seed'
 
 function App() {
-  const [items, setItems] = useState([]);
-
+  const [items, setItems] = useState([])
+  const [responseSave, setResponseSave] = useState()
   const [filter, setFilter] = useState("All")
   const [search, setSearch] = useState("")
   const [seed, setSeed] = useState("")
@@ -23,6 +23,7 @@ function App() {
     } catch (error) {
       console.log('Ocorreu um erro ao fazer a requisição:', error);
     }
+
   };
 
   const saveList = async () => {
@@ -39,6 +40,8 @@ function App() {
       },
       body: JSON.stringify(data)
     })
+    let responseBody = await response.text();
+    setResponseSave(responseBody)
   }
 
   const addItem = (image, name, brand, quantity, optional) => {
@@ -83,6 +86,7 @@ function App() {
           password={password} setPassword={setPassword}
           searchList={searchList}
           saveList={saveList}
+          responseSave={responseSave}
         />
       </div>
       <div className='searchItems'>

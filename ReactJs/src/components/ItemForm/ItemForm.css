@@ -11,14 +11,6 @@ h2 {
   align-items: center;
 }
 
-.image-input {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10px;
-}
-
 .image-input label {
   margin-bottom: 5px;
   font-size: 14px;

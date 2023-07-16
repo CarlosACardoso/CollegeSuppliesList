@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './ItemForm.css'
 
 const ItemForm = ({ addItem }) => {
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState("");
     const [name, setName] = useState("")
     const [brand, setBrand] = useState("")
     const [quantity, setQuantity] = useState("")
@@ -27,13 +27,11 @@ const ItemForm = ({ addItem }) => {
                 className="item-form"
                 onSubmit={handleSubmit}
             >
-                <div className="image-input">
-                    <label htmlFor="image">Escolha uma imagem para o item</label>
-                    <input type='file' name='image' 
-                        onChange={(e) => setImage(e.target.files[0])}/>
-                </div>
                 <div className='itemDetailsForm'>
-                    
+                    <input type='text' className='itemImage' 
+                        placeholder="Url da imagem do item"
+                        onChange={(e) => setImage(e.target.value)}
+                    />
                     <input 
                         type="text" 
                         placeholder="Digite o nome do item" 

@@ -4,3 +4,11 @@ button {
     text-align: center;
     padding: 3px;
 }
+
+.responseSave {
+    font-size: 10px;
+    text-align: center;
+    width: 110px;
+    align-items: center;
+    display: flex;
+}

@@ -7,7 +7,7 @@ const Item = ({ item, checkItem, removeItem }) => {
           <div className='itemDetails'
             style={{textDecoration: item.isCompleted ? "line-through" : ""}}
           >
-            {item.image && <img src={URL.createObjectURL(item.image)} alt="Item" style={{ opacity: item.isCompleted ? 0.5 : 1 }} />} 
+            {item.image && <img src={item.image} alt="Item" style={{ opacity: item.isCompleted ? 0.5 : 1 }} />}
             <p className ='itemName'>{item.name}</p>
             <p className ='itemBrand'>{item.brand}</p>
             <p className ='itemQuant'>{item.quantity}</p>

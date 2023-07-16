@@ -42,7 +42,6 @@ const checkPassword = (fileName, listPassword) =>{
   let fullPath = path.join(filesPath, fileName);
   const fileContent = require(fullPath);
   password = fileContent;
-  console.log(listPassword)
   if (password === listPassword){
     return true;
   }else{
@@ -61,13 +60,13 @@ router.post('/saveList', (request, response) => {
   if (checkFileExists(body.listName)){
     if(checkPassword(body.listName, body.listPassword)){
         saveItems(body.listItems, body.listName, body.listPassword)
-        console.log('Salvo com sucesso.')
+        response.send('Salvo com sucesso.')
     }else{
-      console.log('Senha Incorreta.')
+      response.send('Senha Incorreta.')
     }
   }else{
     saveItems(body.listItems, body.listName,body.listPassword)
-    console.log('Criado com sucesso.')
+    response.send('Criada com sucesso.');
   }
   
 });
